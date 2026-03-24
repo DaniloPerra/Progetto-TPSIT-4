@@ -2,7 +2,7 @@ package ceciliJava;
 
 import java.util.*;
 
-public class CPL_Main {
+public class MainUtente {
 
 	public static void main(String[] args) {
 		
