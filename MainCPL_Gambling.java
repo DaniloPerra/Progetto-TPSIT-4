@@ -20,5 +20,13 @@ public class MainCPL_Gambling {
         for (int j = 0; j < n; j++) {
             System.out.println(arrayCPL[j].toString());
         }
+
+        System.out.println("Prima di giocare teniamo ad informarti" +
+                            " riguardo le probabilita' di vincita': " +
+                            "\n===TRIS: 0,14%==="+
+                            "\n===COPPIA: 29,63%==="+
+                            "\n===TUTTI DIVERSI: 69,14%===");
+
+
     }
 }
