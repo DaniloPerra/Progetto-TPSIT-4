@@ -2,7 +2,6 @@ package ProggettoInformaticaTpsit;
 import java.util.*;
 
 public class CPL_Gambling {
-
     private String nomeApp = "CPL Gambling";
     private String localitaServer;
     private double saldoCassa;
@@ -10,8 +9,12 @@ public class CPL_Gambling {
     private double puntataMassima;
     private List<String> giochiOfferti;
 
+    private static final int MAX_PARTITE = 10;  // limite massimo di partite
+    private int partiteGiocate;                 // contatore partite giocate
+
     public CPL_Gambling(){
         this.giochiOfferti = new ArrayList<>();
+        this.partiteGiocate = 0;
     }
 
     public CPL_Gambling(String localitaServer,
@@ -21,9 +24,32 @@ public class CPL_Gambling {
         this.puntataMinima = puntataMinima;
         this.puntataMassima = puntataMassima;
         this.giochiOfferti = new ArrayList<>();
+        this.partiteGiocate = 0;
     }
 
+    // Restituisce true se si può ancora giocare, false se il limite è raggiunto
+    public boolean puoiGiocare() {
+        return partiteGiocate < MAX_PARTITE;
+    }
 
+    // Da chiamare all'inizio di ogni partita — restituisce false se il limite è raggiunto
+    public boolean iniziaPartita() {
+        if (!puoiGiocare()) {
+            System.out.println("Limite di " + MAX_PARTITE + " partite raggiunto! Non puoi più giocare.");
+            return false;
+        }
+        partiteGiocate++;
+        System.out.println("Partita " + partiteGiocate + "/" + MAX_PARTITE + " iniziata.");
+        return true;
+    }
+
+    public int getPartiteGiocate() {
+        return partiteGiocate;
+    }
+
+    public int getPartiteRimanenti() {
+        return MAX_PARTITE - partiteGiocate;
+    }
 
     public void inserisciDati(Scanner tastiera){
         System.out.println("Inserisci la località del server a cui si è connessi: ");
@@ -67,6 +93,8 @@ public class CPL_Gambling {
                 "\nSaldo della cassa del Casinò: " + this.saldoCassa +
                 "\nPuntata minima consentita: " + this.puntataMinima +
                 "\nPuntata massima consentita: " + this.puntataMassima +
-                "\nGiochi offerti: " + this.giochiOfferti.toString();
+                "\nGiochi offerti: " + this.giochiOfferti.toString() +
+                "\nPartite giocate: " + this.partiteGiocate + "/" + MAX_PARTITE +
+                "\nPartite rimanenti: " + this.getPartiteRimanenti();
     }
 }
