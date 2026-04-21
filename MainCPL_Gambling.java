@@ -6,8 +6,11 @@ public class MainCPL_Gambling {
 
         Scanner tastiera = new Scanner(System.in);
 
+        SlotMachine slot = new SlotMachine();
+
         System.out.println("Quanti sedi ha il CPL Gambling?");
         int n = tastiera.nextInt();
+        tastiera.nextLine();
 
         CPL_Gambling cplMomentaneo = new CPL_Gambling();
         CPL_Gambling[] arrayCPL = new CPL_Gambling[n];
@@ -27,6 +30,6 @@ public class MainCPL_Gambling {
                             "\n===COPPIA: 29,63%==="+
                             "\n===TUTTI DIVERSI: 69,14%===");
 
-
+            slot.avvia();
     }
 }
