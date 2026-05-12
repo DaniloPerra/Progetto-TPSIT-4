@@ -2,29 +2,34 @@ package ProggettoInformaticaTpsit;
 import java.util.*;
 
 public class CPL_Gambling {
-    private String nomeApp = "CPL Gambling";
-    private String localitaServer;
-    private double saldoCassa;
-    private double puntataMinima;
-    private double puntataMassima;
+    private final String NOME_APP = "CPL Gambling";
+    private double saldoCassa = 10000;
+    private double puntataMinima = 1;
+    private double puntataMassima = 50;
     private List<String> giochiOfferti;
 
     private static final int MAX_PARTITE = 10;  // limite massimo di partite
-    private int partiteGiocate;                 // contatore partite giocate
+    public static int partiteGiocate = 0;                 // contatore partite giocate
 
     public CPL_Gambling(){
         this.giochiOfferti = new ArrayList<>();
         this.partiteGiocate = 0;
     }
 
-    public CPL_Gambling(String localitaServer,
-                        double saldoCassa, double puntataMinima, double puntataMassima){
-        this.localitaServer = localitaServer;
-        this.saldoCassa = saldoCassa;
-        this.puntataMinima = puntataMinima;
-        this.puntataMassima = puntataMassima;
-        this.giochiOfferti = new ArrayList<>();
-        this.partiteGiocate = 0;
+    public String getNome(){
+        return this.NOME_APP;
+    }
+
+    public double getSaldoCassa() {
+        return this.saldoCassa;
+    }
+
+    public double getPuntataMinima() {
+        return this.puntataMinima;
+    }
+
+    public double getPuntataMassima() {
+        return this.puntataMassima;
     }
 
     // Restituisce true se si può ancora giocare, false se il limite è raggiunto
@@ -51,24 +56,6 @@ public class CPL_Gambling {
         return MAX_PARTITE - partiteGiocate;
     }
 
-    public void inserisciDati(Scanner tastiera){
-        System.out.println("Inserisci la località del server a cui si è connessi: ");
-        this.localitaServer = tastiera.nextLine();
-        System.out.println("Inserisci la quantità di denaro nella cassa dell'app: ");
-        this.saldoCassa = tastiera.nextDouble();
-        System.out.println("Inserisci la puntata minima consentita: ");
-        this.puntataMinima = tastiera.nextDouble();
-        System.out.println("Inserisci la puntata massima consentita: ");
-        this.puntataMassima = tastiera.nextDouble();
-        System.out.println("Quanti giochi contiene l'app? ");
-        int n = tastiera.nextInt();
-        tastiera.nextLine();
-        System.out.println("Inserisci i giochi contenuti nell'app: ");
-        for(int i = 0; i < n; i++){
-            String gioco = tastiera.nextLine();
-            this.aggiungiGioco(gioco);
-        }
-    }
 
     public void aggiungiGioco(String gioco){
         this.giochiOfferti.add(gioco);
@@ -88,8 +75,7 @@ public class CPL_Gambling {
     }
 
     public String toString(){
-        return  "Nome Casinò: " + this.nomeApp +
-                "\nLocalità del server: " + this.localitaServer +
+        return  "Nome Casinò: " + this.NOME_APP +
                 "\nSaldo della cassa del Casinò: " + this.saldoCassa +
                 "\nPuntata minima consentita: " + this.puntataMinima +
                 "\nPuntata massima consentita: " + this.puntataMassima +
